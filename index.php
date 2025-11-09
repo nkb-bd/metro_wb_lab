@@ -34,6 +34,7 @@ $router->get('/', fn() => $auth->showLogin());
 $router->get('/login', fn() => $auth->showLogin());
 $router->get('/register', fn() => $auth->showRegister());
 $router->get('/dashboard', fn() => $dash->index());
+$router->get('/test-mail', fn() => $dash->testMail());
 
 $router->post('/register', fn() => $auth->register());
 $router->post('/login', fn() => $auth->login());

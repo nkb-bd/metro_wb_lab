@@ -19,6 +19,10 @@ class Router {
         if (!$callback) {
             http_response_code(404);
             echo "<h1>404 Not Found</h1>";
+            echo "<p>Requested: <strong>$method $path</strong></p>";
+            echo "<details><summary>Available routes</summary><pre>";
+            print_r($this->routes);
+            echo "</pre></details>";
             return;
         }
 
