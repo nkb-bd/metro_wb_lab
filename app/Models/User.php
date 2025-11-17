@@ -6,7 +6,7 @@ use PDO;
 class User {
     private static function connect(): PDO {
         $host = getenv('DB_HOST') ?: '127.0.0.1';
-        $db = getenv('DB_NAME') ?: 'authboard';
+        $db = getenv('DB_NAME') ?: 'metro_web_class';
         $user = getenv('DB_USER') ?: 'root';
         $pass = getenv('DB_PASS') ?: '';
         $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";

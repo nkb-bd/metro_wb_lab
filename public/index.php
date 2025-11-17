@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 // autoload
 require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../app/helpers.php';
 
 // tiny .env loader (reads .env into getenv and $_ENV)
 $envFile = __DIR__ . '/../.env';
@@ -22,18 +23,24 @@ use App\Core\Router;
 use App\Core\Session;
 use App\Controllers\AuthController;
 use App\Controllers\DashboardController;
+use App\Controllers\PostController;
 
 Session::start();
 
 $router = new Router();
 $auth = new AuthController();
 $dash = new DashboardController();
+$posts = new PostController();
 
 $router->get('/', fn() => $auth->showLogin());
 $router->get('/login', fn() => $auth->showLogin());
 $router->get('/register', fn() => $auth->showRegister());
 $router->get('/dashboard', fn() => $dash->index());
 $router->get('/test-mail', fn() => $dash->testMail());
+
+$router->get('/posts', fn() => $posts->index());
+$router->post('/posts', fn() => $posts->create());
+$router->get('/api/posts', fn() => $posts->getPosts());
 
 $router->post('/register', fn() => $auth->register());
 $router->post('/login', fn() => $auth->login());
